@@ -735,12 +735,14 @@ void HttpControllersRouter::doPreHandlingAdvices(
         auto &origin = req->getHeader("Origin");
         if (origin.empty())
         {
-            resp->addHeader("Access-Control-Allow-Origin", "*");
+            resp->addHeader("Access-Control-Allow-Origin",
+                            "http://localhost:5000");
         }
         else
         {
             resp->addHeader("Access-Control-Allow-Origin", origin);
         }
+        resp->addHeader("Access-Control-Allow-Credentials", "true");
         resp->addHeader("Access-Control-Allow-Methods", methods);
         auto &headers = req->getHeaderBy("access-control-request-headers");
         if (!headers.empty())

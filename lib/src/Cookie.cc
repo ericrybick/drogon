@@ -37,14 +37,14 @@ std::string Cookie::cookieString() const
     {
         ret.append("Path=").append(path_).append("; ");
     }
-    if (secure_)
-    {
-        ret.append("Secure; ");
-    }
+
+    ret.append("Secure; ");
+
     if (httpOnly_)
     {
         ret.append("HttpOnly; ");
     }
+    ret.append("SameSite=None; ");
     ret.resize(ret.length() - 2);  // delete last semicolon
     ret.append("\r\n");
     return ret;
